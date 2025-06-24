@@ -52,12 +52,19 @@ router.get('/', verifyToken, async (req, res) => {
         res.render("home.ejs", {
             books,
             currentPage: page,
-            totalPages
+            totalPages,
+            error: null // no error
         });
 
     } catch (err) {
         console.error("Error fetching books:", err);
-        res.status(500).send("Error loading books.");
+
+        res.render("home.ejs", {
+            books: [],
+            currentPage: page,
+            totalPages: 1,
+            error: "There was a problem loading books. Please try again."
+        });
     }
 
 });
