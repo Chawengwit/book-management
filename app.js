@@ -30,6 +30,8 @@ app.use(cors({
 
 app.use(express.static('public'));
 app.use(express.json());
+app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+app.use('/fa', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
 app.use(router);
 
 app.listen(3000, ()=> {

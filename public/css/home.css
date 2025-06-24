@@ -1,3 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 
+.container {
+  padding: 0 10px;
+}
+
+.header-bar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.header-bar .left, .header-bar .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  gap: 10px;
+}
+.header-bar .fa-book-open {
+  font-size: 30px;
+}
+.header-bar .title-box .header-title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 2rem;
+}
+.header-bar .title-box .header-semi-title {
+  font-size: 18px;
+  line-height: 2rem;
+  color: gray;
+}
+
+.btn {
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  transition: 0.15s ease;
+  cursor: pointer;
+}
+.btn .btn-text {
+  text-decoration: none;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+.btn.btn-create {
+  color: whitesmoke;
+  background-color: black;
+  border: 1px solid black;
+}
+.btn.btn-create .btn-text {
+  color: whitesmoke;
+}
+.btn.btn-view {
+  border: 1px solid gainsboro;
+}
+.btn.btn-view:hover {
+  background-color: gainsboro;
+}
+.btn.btn-edit {
+  border: 1px solid gainsboro;
+}
+.btn.btn-edit:hover {
+  background-color: gainsboro;
+}
+.btn.btn-del {
+  color: whitesmoke;
+  background-color: red;
+  border: 1px solid red;
+}
+
+.books-container {
+  margin-top: 20px;
+}
+.books-container .inner {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.books-container .inner .book-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid gainsboro;
+  padding: 10px;
+  font-size: 12px;
+  transition: 0.15s ease;
+}
+.books-container .inner .book-box:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid white;
+}
+.books-container .inner .book-box .top {
+  display: flex;
+  justify-content: left;
+  align-items: start;
+  gap: 10px;
+}
+.books-container .inner .book-box .top .left .img-box {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  background-color: gainsboro;
+  border-radius: 8px;
+}
+.books-container .inner .book-box .top .right {
+  min-height: 180px;
+  line-height: 1.25rem;
+}
+.books-container .inner .book-box .top .right .book-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+.books-container .inner .book-box .top .right .book-author {
+  color: lightslategray;
+  line-height: 1;
+}
+.books-container .inner .book-box .top .right .book-genre {
+  background-color: lightgray;
+  width: fit-content;
+  padding: 0px 8px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.books-container .inner .book-box .top .right .book-publiched {
+  color: lightslategray;
+}
+.books-container .inner .book-box .top .right .book-des {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  height: 80px;
+}
+.books-container .inner .book-box .bottom {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+}
+.books-container .inner .book-box .bottom .btn {
+  width: 100%;
+  gap: 5px;
+  padding: 0px 10px;
+}
 
 /*# sourceMappingURL=home.css.map */

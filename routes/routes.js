@@ -65,6 +65,10 @@ router.get('/book/:id', verifyToken, async (req, res) => {
     }
 });
 
+router.get('/create', verifyToken, async (req, res) => {
+    res.render("detail.ejs")
+});
+
 //================== BACK END ====================
 
 // api log in

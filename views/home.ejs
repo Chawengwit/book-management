@@ -5,29 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/fa/css/all.min.css">
 </head>
 <body>
-    <%- include('navbar') %>
-    <h1>Home Page</h1>
-    <p>
-        <% books.forEach(function(book) { %>
-                <a href="/book/<%= book._id %>"><strong>Title:</strong> <%= book.title %></a>
-                <p><strong>Author:</strong> <%= book.author %></p>
-                <p><strong>Year:</strong> <%= book.published_year %></p>
-                <p><strong>Genre:</strong> <%= book.genre %></p>
-                <img src="images/book-storage/<%= book.image %>" alt="<%= book.title %>" width="150"/>
-                <a href="/delete-book/<%= book._id %>" onclick="return confirm('Confirm delete?')">Delete</a>
-        <% }) %>
+    <div class="container" value="123">
+        <div class="header-bar">
+            <div class="left">
+                <i class="fas fa-book-open"></i>
+                <div class="title-box">
+                    <div class="header-title">Book Management</div>
+                    <div class="header-semi-title" >Manage your book collection</div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="btn btn-create">
+                    <i class="fas fa-plus"></i>
+                    <a class="btn-text" href="/create">Add New Book</a>
+                </div>
+            </div>
+        </div>
 
-    </h1>
+        <div class="books-container">
+            <div class="inner">
+                <!-- <% books.forEach(function(book) { %> -->
 
-    <h1>Create Book</h1>
+                    <div class="book-box">
+                        <div class="top">
+                            <div class="left">
+                                <div class="img-box">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="book-name">The Great Gatsby</div>
+                                <div class="book-author">by F. Scott Fitzgerald</div>
+                                <div class="book-genre">Cartoon</div>
+                                <div class="book-publiched">Published: </div>
+                                                                <div class="book-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque iusto sit ducimus officia fuga laborum.</div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="btn btn-view">
+                                <i class="fas fa-eye"></i>
+                                <div>View</div>
+                            </div>
+                            <div class="btn btn-edit">
+                                <i class="fas fa-edit"></i>
+                                <div>Edit</div>
+                            </div>
+                            <div class="btn btn-del">
+                                <i class="fas fa-trash-alt"></i>
+                                <div>Delete</div>
+                            </div>
 
-    <%- include('detail') %>
+                        </div>
+                    </div>
 
-    <%- include('footer') %>
+                    <div class="book-box">
+                        <div class="top">
+                            <div class="left">
+                                <div class="img-box">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="book-name">The Great Gatsby</div>
+                                <div class="book-author">by F. Scott Fitzgerald</div>
+                                <div class="book-genre">Cartoon</div>
+                                <div class="book-publiched">Published: </div>
+                                                                <div class="book-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque iusto sit ducimus officia fuga laborum.</div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="btn btn-view">
+                                <i class="fas fa-eye"></i>
+                                <div>View</div>
+                            </div>
+                            <div class="btn btn-edit">
+                                <i class="fas fa-edit"></i>
+                                <div>Edit</div>
+                            </div>
+                            <div class="btn btn-del">
+                                <i class="fas fa-trash-alt"></i>
+                                <div>Delete</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="book-box">
+                        <div class="top">
+                            <div class="left">
+                                <div class="img-box">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="book-name">The Great Gatsby</div>
+                                <div class="book-author">by F. Scott Fitzgerald</div>
+                                <div class="book-genre">Cartoon</div>
+                                <div class="book-publiched">Published: </div>
+                                                                <div class="book-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque iusto sit ducimus officia fuga laborum.</div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="btn btn-view">
+                                <i class="fas fa-eye"></i>
+                                <div>View</div>
+                            </div>
+                            <div class="btn btn-edit">
+                                <i class="fas fa-edit"></i>
+                                <div>Edit</div>
+                            </div>
+                            <div class="btn btn-del">
+                                <i class="fas fa-trash-alt"></i>
+                                <div>Delete</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="book-box">
+                        <div class="top">
+                            <div class="left">
+                                <div class="img-box">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="book-name">The Great Gatsby</div>
+                                <div class="book-author">by F. Scott Fitzgerald</div>
+                                <div class="book-genre">Cartoon</div>
+                                <div class="book-publiched">Published: </div>
+                                <div class="book-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque iusto sit ducimus officia fuga laborum.</div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="btn btn-view">
+                                <i class="fas fa-eye"></i>
+                                <div>View</div>
+                            </div>
+                            <div class="btn btn-edit">
+                                <i class="fas fa-edit"></i>
+                                <div>Edit</div>
+                            </div>
+                            <div class="btn btn-del">
+                                <i class="fas fa-trash-alt"></i>
+                                <div>Delete</div>
+                            </div>
+
+                        </div>
+                    </div>
+                
+                <!-- <% }) %> -->
+            </div>
+        </div>
+
+    </div>
 
 
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/home.js"></script>
 </body>
 </html>
