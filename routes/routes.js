@@ -35,11 +35,6 @@ router.get('/', verifyToken, async (req, res) => {
     }else{
         try {
             const books = await Books.find().exec();
-
-            console.log("================");
-            console.log(books);
-            console.log("================");
-
             res.render("home.ejs", { books });
 
         } catch (err) {
@@ -56,7 +51,7 @@ router.get('/register', (req, res) => {
 });
 
 // Detail page
-router.get('/book/:id', verifyToken, async (req, res) => {
+router.get('/view/:id', verifyToken, async (req, res) => {
     try {
         const book = await Books.findById(req.params.id);
         if (!book) {
@@ -72,7 +67,23 @@ router.get('/book/:id', verifyToken, async (req, res) => {
 
 // create page form
 router.get('/create', verifyToken, async (req, res) => {
-    res.render("detailForm.ejs")
+    res.render("createForm.ejs")
+});
+
+// update page form
+router.get('/update/:id', verifyToken, async (req, res) => {
+    try {
+        let book = await Books.findById(req.params.id);
+        if (!book) {
+            return res.status(404).send("Book not found.");
+        }
+
+        res.render("editForm.ejs", { book});
+    } catch (err) {
+        console.error("Error fetching book:", err);
+        res.status(500).send("Error getting book.");
+    }
+    
 });
 
 //================== BACK END ====================
@@ -150,7 +161,7 @@ router.get('/delete-book/:id', verifyToken, async (req, res) => {
         await Books.findByIdAndDelete(req.params.id);
         res.redirect("/");
 
-    } catch {
+    } catch (err) {
         console.log("Can not delete book: ", err);
         res.redirect("/");
     }

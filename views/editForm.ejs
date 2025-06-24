@@ -13,52 +13,45 @@
         <a class="left" href="/">
             <i class="fas fa-book-open"></i>
             <div class="title-box">
-                <div class="header-title">Add New Book</div>
-                <div class="header-semi-title" >Create your book to collection</div>
+                <div class="header-title">Edit Book</div>
+                <div class="header-semi-title" >Edit your book detail.</div>
             </div>
         </a>
     </div>
 
     <div class="create-container">
         <div class="inner-create">
-            <form method="POST" action="/get-detail" enctype="multipart/form-data">
 
+            <form method="POST" action="/update-detail/<%= book._id %>">
                 <div class="inner-form">
                     <div class="form-box" style="margin-top: 0;">
                         <div class="label-text">Title*</div>
-                        <input type="text" name="title" required placeholder="Enter a title" >
+                        <input type="text" name="title" required placeholder="Enter a title" value="<%= book.title %>">
                     </div>
 
                     <div class="form-box">
                         <div class="label-text">Author*</div>
-                        <input type="text" name="author" required placeholder="Enter a author" >
+                        <input type="text" name="author" required placeholder="Enter a author" value="<%= book.author %>">
                     </div>
 
                     <div class="form-box">
                         <div class="label-text">Published*</div>
-                        <input type="text" name="published_year" required placeholder="Enter years published" >
+                        <input type="text" name="published_year" required placeholder="Enter years published" value="<%= book.published_year %>">
                     </div>
 
                     <div class="form-box">
                         <div class="label-text">Genre*</div>
-                        <input type="text" name="genre" required placeholder="Enter a genre" >
-                    </div>
-
-                    <div class="form-box">
-                        <div class="label-text">Cover*</div>
-                        <input style="border: none; width: fit-content;" type="file" name="image" accept="image/*" required>
+                        <input type="text" name="genre" required placeholder="Enter a genre" value="<%= book.genre %>">
                     </div>
                 </div>
 
                 <div class="create-btn-zone">
-                    <button class="btn btn-action" type="submit" >Add Book</button>
+                    <button class="btn btn-action" type="submit" >Update Book</button>
                     <a class="btn btn-cancel" type="button" href="/" >Cancel</a>
                 </div>
             </form>
+            
         </div>
     </div>
-
-    <script src="/js/jquery.min.js"></script>
-    
 </body>
 </html>
