@@ -71,7 +71,7 @@ router.get('/book/:id', verifyToken, async (req, res) => {
 });
 
 router.get('/create', verifyToken, async (req, res) => {
-    res.render("detail.ejs")
+    res.render("createForm.ejs")
 });
 
 //================== BACK END ====================

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Book</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/fa/css/all.min.css">
+</head>
+<body>
+    <div class="header-bar" style="margin: 20px 20px 0 20px;">
+        <a class="left" href="/">
+            <i class="fas fa-book-open"></i>
+            <div class="title-box">
+                <div class="header-title">Add New Book</div>
+                <div class="header-semi-title" >Create your book to collection</div>
+            </div>
+        </a>
+    </div>
+
+    <div class="create-container">
+        <div class="inner-create">
+            <form method="POST" action="/get-detail" enctype="multipart/form-data">
+
+                <div class="inner-form">
+                    <div class="form-box" style="margin-top: 0;">
+                        <div class="label-text">Title*</div>
+                        <input type="text" name="title" required placeholder="Enter a title" >
+                    </div>
+
+                    <div class="form-box">
+                        <div class="label-text">Author*</div>
+                        <input type="text" name="author" required placeholder="Enter a author" >
+                    </div>
+
+                    <div class="form-box">
+                        <div class="label-text">Published*</div>
+                        <input type="text" name="published_year" required placeholder="Enter years published" >
+                    </div>
+
+                    <div class="form-box">
+                        <div class="label-text">Genre*</div>
+                        <input type="text" name="genre" required placeholder="Enter a genre" >
+                    </div>
+
+                    <div class="form-box">
+                        <div class="label-text">Cover*</div>
+                        <input style="border: none; width: fit-content;" type="file" name="image" accept="image/*" required>
+                    </div>
+                </div>
+
+                <div class="create-btn-zone">
+                    <button class="btn btn-action" type="submit" >Add Book</button>
+                    <a class="btn btn-cancel" type="button" href="/" >Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+    
+</body>
+</html>

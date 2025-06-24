@@ -20,6 +20,10 @@
   align-items: top;
   gap: 10px;
 }
+.header-bar .left {
+  text-decoration: none;
+  color: black;
+}
 .header-bar .fa-book-open {
   font-size: 30px;
 }
@@ -47,7 +51,7 @@
   text-decoration: none;
 }
 .btn:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 .btn.btn-create {
   color: whitesmoke;
@@ -75,6 +79,19 @@
   color: whitesmoke;
   background-color: red;
   border: 1px solid red;
+}
+.btn.btn-action, .btn.btn-cancel {
+  border: none;
+  width: 20%;
+  min-width: 120px;
+}
+.btn.btn-action {
+  color: whitesmoke;
+  background-color: black;
+}
+.btn.btn-cancel {
+  color: black;
+  border: 1px solid whitesmoke;
 }
 
 .books-container {

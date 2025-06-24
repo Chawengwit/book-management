@@ -22,6 +22,11 @@
         gap: 10px;
     }
 
+    .left {
+        text-decoration: none;
+        color: black;
+    }
+
     .fa-book-open {
         font-size: 30px;
     }
@@ -55,7 +60,7 @@
     text-decoration: none;
 
     &:hover{
-        opacity: 0.9;
+        opacity: 0.8;
     }
 
     &.btn-create {
@@ -87,6 +92,22 @@
         color: whitesmoke;
         background-color: red;
         border: 1px solid red;
+    }
+
+    &.btn-action, &.btn-cancel{
+        border: none;
+        width: 20%;
+        min-width: 120px;
+    }
+
+    &.btn-action {
+        color: whitesmoke;
+        background-color: black;
+    }
+
+    &.btn-cancel {
+        color: black;
+        border: 1px solid whitesmoke;
     }
 }
 
