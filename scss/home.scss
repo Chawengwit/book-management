@@ -198,3 +198,16 @@
         }
     }
 }
+
+@media screen and (max-width: 530px) {
+    .header-bar {
+        flex-direction: column;
+        align-items: start;
+        .right {
+            width: 100%;
+            .btn.btn-create{
+                width: 100%;
+            }
+        }
+    }
+}

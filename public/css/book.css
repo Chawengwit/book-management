@@ -98,4 +98,13 @@
   flex-direction: column;
 }
 
+@media screen and (max-width: 530px) {
+  .view-container .inner-view .middle {
+    flex-direction: column;
+  }
+  .view-container .inner-view .middle .right {
+    flex-direction: column-reverse;
+  }
+}
+
 /*# sourceMappingURL=book.css.map */
