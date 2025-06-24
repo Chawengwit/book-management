@@ -29,18 +29,35 @@ const secret_key = "helloworld";
 // home
 router.get('/', verifyToken, async (req, res) => {
 
-    if(!req.session.login || !req.session.token){
-        res.redirect('/login');
+    if (!req.session.login || !req.session.token) {
+        return res.redirect('/login');
+    }
 
-    }else{
-        try {
-            const books = await Books.find().exec();
-            res.render("home.ejs", { books });
+    // Parse page and limit from query, default to page 1, 4 items per page
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 4;
 
-        } catch (err) {
-            console.error("Error fetching books:", err);
-            res.status(500).send("Error loading books.");
-        }
+    try {
+        const skip = (page - 1) * limit;
+
+        // Get total count for pagination
+        const totalBooks = await Books.countDocuments();
+        const totalPages = Math.ceil(totalBooks / limit);
+
+        const books = await Books.find()
+            .skip(skip)
+            .limit(limit)
+            .exec();
+
+        res.render("home.ejs", {
+            books,
+            currentPage: page,
+            totalPages
+        });
+
+    } catch (err) {
+        console.error("Error fetching books:", err);
+        res.status(500).send("Error loading books.");
     }
 
 });

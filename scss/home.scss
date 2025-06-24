@@ -199,6 +199,41 @@
     }
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    a {
+        padding: 0.5rem 1rem;
+        border: 1px solid white;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    a:hover:not(.disabled):not(.active) {
+        background-color: salmon;
+        color: white;
+    }
+
+    .active {
+        background-color: white;
+        border-color: salmon;
+        color: salmon;
+        font-weight: bold;
+        &:hover{
+            background-color: salmon;
+            color: white;
+        }
+    }
+}
+
 @media screen and (max-width: 530px) {
     .header-bar {
         flex-direction: column;
