@@ -44,8 +44,6 @@
   padding: 0 20px;
   transition: 0.15s ease;
   cursor: pointer;
-}
-.btn .btn-text {
   text-decoration: none;
 }
 .btn:hover {
@@ -60,12 +58,14 @@
   color: whitesmoke;
 }
 .btn.btn-view {
+  color: black;
   border: 1px solid gainsboro;
 }
 .btn.btn-view:hover {
   background-color: gainsboro;
 }
 .btn.btn-edit {
+  color: black;
   border: 1px solid gainsboro;
 }
 .btn.btn-edit:hover {
@@ -111,6 +111,11 @@
   overflow: hidden;
   background-color: gainsboro;
   border-radius: 8px;
+}
+.books-container .inner .book-box .top .left .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .books-container .inner .book-box .top .right {
   min-height: 180px;

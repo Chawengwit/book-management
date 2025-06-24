@@ -35,6 +35,11 @@ router.get('/', verifyToken, async (req, res) => {
     }else{
         try {
             const books = await Books.find().exec();
+
+            console.log("================");
+            console.log(books);
+            console.log("================");
+
             res.render("home.ejs", { books });
 
         } catch (err) {
