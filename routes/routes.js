@@ -70,8 +70,9 @@ router.get('/book/:id', verifyToken, async (req, res) => {
     }
 });
 
+// create page form
 router.get('/create', verifyToken, async (req, res) => {
-    res.render("createForm.ejs")
+    res.render("detailForm.ejs")
 });
 
 //================== BACK END ====================
