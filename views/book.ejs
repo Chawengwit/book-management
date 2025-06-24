@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+</head>
+<body>
+    <h1>Book Detail</h1>
+    <form method="POST" action="/update-detail/<%= book._id %>">
+
+        <img src="/images/book-storage/<%= book.image %>" alt="<%= book.title %>" width="150"/>
+
+        <br>
+
+        <label>Title</label>
+        <input type="text" name="title" value="<%= book.title %>">
+
+        <br>
+
+        <label>Author</label>
+        <input type="text" name="author" value="<%= book.author %>">
+
+        <br>
+
+        <label>Published</label>
+        <input type="text" name="published_year" value="<%= book.published_year %>">
+
+        <br>
+        
+        <label>Genre</label>
+        <input type="text" name="genre" value="<%= book.genre %>">
+
+        <br>
+
+        <button type="submit" >Edit</button>
+    </form>
+
+    <a href="/">Back</a>
+    
+</body>
+</html>

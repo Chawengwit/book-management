@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <h1>Home Page</h1>
+    <p>
+        <% books.forEach(function(book) { %>
+                <a href="/book/<%= book._id %>"><strong>Title:</strong> <%= book.title %></a>
+                <p><strong>Author:</strong> <%= book.author %></p>
+                <p><strong>Year:</strong> <%= book.published_year %></p>
+                <p><strong>Genre:</strong> <%= book.genre %></p>
+                <img src="images/book-storage/<%= book.image %>" alt="<%= book.title %>" width="150"/>
+                <a href="/delete-book/<%= book._id %>" onclick="return confirm('Confirm delete?')">Delete</a>
+        <% }) %>
+
+    </h1>
+
+    <h1>Create Book</h1>
+
+    <%- include('detail') %>
+
+    <%- include('footer') %>
+
+
+    <script src="/js/home.js"></script>
+</body>
+</html>
