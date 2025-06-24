@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/fa/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar">
+            <a class="left" href="/">
+                <i class="fas fa-book-open"></i>
+                <div class="title-box">
+                    <div class="header-title">Book Management</div>
+                    <div class="header-semi-title" >Manage your book collection</div>
+                </div>
+            </a>
+            <div class="right">
+                <a class="btn btn-create" href="/create">
+                    <i class="fas fa-plus"></i>
+                    <div class="btn-text">Add New Book</div>
+                </a>
+            </div>
+        </div>
+
+        <% if (error) { %>
+            <div class="error-box">
+                <p><%= error %></p>
+            </div>
+
+        <% } else if (books.length === 0) { %>
+            <div class="loading-box">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading books...</p>
+            </div>
+
+        <% } else { %>
+            <div class="books-container">
+                <div class="inner">
+                    <% books.forEach(function(book) { %>
+
+                        <div class="book-box">
+                            <div class="top">
+                                <div class="left">
+                                    <div class="img-box">
+                                        <img src="/images/book-storage/<%= book.image %>" alt="<%= book.title %>">
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="book-name"><%= book.title %></div>
+                                    <div class="book-author"><%= book.author %></div>
+                                    <div class="book-genre"><%= book.genre %></div>
+                                    <div class="book-publiched">Published: <%= book.published_year %></div>
+                                    <div class="book-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque iusto sit ducimus officia fuga laborum.</div>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="btn btn-view" href="/view/<%= book._id %>">
+                                    <i class="fas fa-eye"></i>
+                                    <div>View</div>
+                                </a>
+                                <a class="btn btn-edit" href="/update/<%= book._id %>">
+                                    <i class="fas fa-edit"></i>
+                                    <div>Edit</div>
+                                </a>
+                                <a class="btn btn-del" href="/delete-book/<%= book._id %>" onclick="return confirm('Confirm delete?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <div>Delete</div>
+                                </a>
+
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <a href="/?page=<%= currentPage - 1 %>">Previous</a>
+            <% } %>
+
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <a href="/?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+                <a href="/?page=<%= currentPage + 1 %>">Next</a>
+            <% } %>
+        </div>
+
+    </div>
+
+</body>
+</html>

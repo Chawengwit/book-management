@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.container {
+    padding: 0 10px;
+}
+
+.header-bar{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .left, .right {
+        display: flex;
+        justify-content: space-between;
+        align-items: top;
+        gap: 10px;
+    }
+
+    .left {
+        text-decoration: none;
+        color: black;
+    }
+
+    .fa-book-open {
+        font-size: 30px;
+    }
+
+    .title-box {
+
+
+        .header-title{
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 2rem;
+        }
+        .header-semi-title{
+            font-size: 18px;
+            line-height: 2rem;
+            color: gray;
+        }
+    }
+}
+
+.btn {
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+    transition: 0.15s ease;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover{
+        opacity: 0.8;
+    }
+
+    &.btn-create {
+        color: whitesmoke;
+        background-color: black;
+        border: 1px solid black;
+        .btn-text{
+            color: whitesmoke;
+        }
+    }
+
+    &.btn-view {
+        color: black;
+        border: 1px solid gainsboro;
+        &:hover{
+            background-color: gainsboro;
+        }
+    }
+
+    &.btn-edit {
+        color: black;
+        border: 1px solid gainsboro;
+        &:hover{
+            background-color: gainsboro;
+        }
+    }
+
+    &.btn-del {
+        color: whitesmoke;
+        background-color: red;
+        border: 1px solid red;
+    }
+
+    &.btn-action, &.btn-cancel{
+        border: none;
+        width: 20%;
+        min-width: 120px;
+    }
+
+    &.btn-action {
+        color: whitesmoke;
+        background-color: black;
+    }
+
+    &.btn-cancel {
+        color: black;
+        border: 1px solid whitesmoke;
+    }
+}
+
+.books-container{
+    margin-top: 20px;
+    .inner{
+        display: grid;
+        grid-gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        // grid-template-rows: repeat(4, 200px);
+        .book-box{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 8px;
+            border: 1px solid gainsboro;
+            padding: 10px;
+            font-size: 12px;
+            transition: 0.15s ease;
+
+            &:hover{
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                border: 1px solid white;
+            }
+
+            .top{
+                display: flex;
+                justify-content: left;
+                align-items: start;
+                gap: 10px;
+
+                .left {
+                    .img-box{
+                        width: 100px;
+                        height: 125px;
+                        overflow: hidden;
+                        background-color: gainsboro;
+                        border-radius: 8px;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+                .right{
+                    min-height: 180px;
+                    line-height: 1.25rem;
+                    .book-name {
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                    .book-author {
+                        color: lightslategray;
+                        line-height: 1;
+                    }
+
+                    .book-genre {
+                        background-color: lightgray;
+                        width: fit-content;
+                        padding: 0px 8px;
+                        border-radius: 10px;
+                        margin: 10px 0;
+                    }
+
+                    .book-publiched{
+                        color: lightslategray;
+                    }
+
+                    .book-des {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                        height: 80px;
+                    }
+                }
+            }
+            .bottom{
+                display: flex;
+                justify-content: space-around;
+                gap: 5px;
+                .btn {
+                    width: 100%;
+                    gap: 5px;
+                    padding: 0px 10px;
+                }
+            }
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    a {
+        padding: 0.5rem 1rem;
+        border: 1px solid white;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    a:hover:not(.disabled):not(.active) {
+        background-color: salmon;
+        color: white;
+    }
+
+    .active {
+        background-color: white;
+        border-color: salmon;
+        color: salmon;
+        font-weight: bold;
+        &:hover{
+            background-color: salmon;
+            color: white;
+        }
+    }
+}
+
+.error-box {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.loading-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b21a8;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+
+    i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .header-bar {
+        flex-direction: column;
+        align-items: start;
+        .right {
+            width: 100%;
+            .btn.btn-create{
+                width: 100%;
+            }
+        }
+    }
+}

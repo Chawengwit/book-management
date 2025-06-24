@@ -1,0 +1,110 @@
+.view-container {
+  padding: 20px;
+}
+.view-container .inner-view {
+  padding: 20px 30px 30px 30px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.view-container .inner-view .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.25rem;
+  margin-bottom: 20px;
+}
+.view-container .inner-view .top .book-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+.view-container .inner-view .top .btn-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  transition: 0.15s ease;
+  text-decoration: none;
+}
+.view-container .inner-view .top .btn-icon:hover {
+  background-color: lightgray;
+}
+.view-container .inner-view .middle {
+  display: flex;
+  justify-content: left;
+  gap: 20px;
+}
+.view-container .inner-view .middle .left .img-box {
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.view-container .inner-view .middle .left .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.view-container .inner-view .middle .right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.view-container .inner-view .middle .right .detail-zone {
+  font-size: 14px;
+  line-height: 1.25rem;
+}
+.view-container .inner-view .middle .right .detail-zone .detail-line {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+.view-container .inner-view .middle .right .detail-zone .detail-line .icon {
+  color: gray;
+}
+.view-container .inner-view .middle .right .detail-zone .detail-line .detail-title {
+  font-weight: 500;
+}
+.view-container .inner-view .middle .right .view-btn-zone {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+}
+.view-container .inner-view .middle .right .view-btn-zone .btn {
+  width: 20%;
+}
+.view-container .inner-view .bottom .description {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 20px 0 10px;
+}
+.view-container .inner-view .bottom .des-value {
+  color: gray;
+  font-size: 14px;
+}
+.view-container .inner-view .bottom .date-info {
+  color: gray;
+  font-size: 12px;
+  margin-top: 25px;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 530px) {
+  .view-container .inner-view .middle {
+    flex-direction: column;
+  }
+  .view-container .inner-view .middle .right {
+    flex-direction: column-reverse;
+  }
+}
+
+/*# sourceMappingURL=book.css.map */

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/book.css">
+    <link rel="stylesheet" href="/fa/css/all.min.css">
+</head>
+<body>
+    <div class="view-container">
+        <div class="inner-view">
+            <div class="top">
+                <div class="book-title"><%= book.title %></div>
+                <a class="btn-icon" href="/">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+            </div>
+            <div class="middle">
+                <div class="left">
+                    <div class="img-box">
+                        <img src="/images/book-storage/<%= book.image %>" alt="<%= book.title %>">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="detail-zone">
+                        <div class="detail-line">
+                            <i class="icon fas fa-user"></i>
+                            <div class="detail-title">Author: </div>
+                            <div class="detail-value"><%= book.author %></div>
+                        </div>
+                        <div class="detail-line">
+                            <i class="icon fas fa-calendar"></i>
+                            <div class="detail-title">Publiched: </div>
+                            <div class="detail-value"><%= book.published_year %></div>
+                        </div>
+                        <div class="detail-line">
+                            <i class="icon fas fa-book-open"></i>
+                            <div class="detail-title">Genre: </div>
+                            <div class="detail-value"><%= book.genre %></div>
+                        </div>
+
+                    </div>
+                    <div class="view-btn-zone">
+                        <a class="btn btn-edit" href="/update/<%= book._id %>">
+                            <i class="fas fa-edit"></i>
+                            <div>Edit</div>
+                        </a>
+                        <a class="btn btn-del" href="/delete-book/<%= book._id %>" onclick="return confirm('Confirm delete?')">
+                            <i class="fas fa-trash-alt"></i>
+                            <div>Delete</div>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="bottom">
+                <div class="description">Description</div>
+                <div class="des-value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ut repellendus possimus enim voluptatibus eligendi?</div>
+                <div class="date-info">
+                    <% 
+                        const date_create_at = new Date(book.createdAt);
+                        const day = String(date_create_at.getDate()).padStart(2, '0');
+                        const month = String(date_create_at.getMonth() + 1).padStart(2, '0');
+                        const year = date_create_at.getFullYear();
+                        const formattedDate_create_at = `${day}/${month}/${year}`;
+
+                        const date_last_update = new Date(book.updatedAt);
+                        const day2 = String(date_last_update.getDate()).padStart(2, '0');
+                        const month2 = String(date_last_update.getMonth() + 1).padStart(2, '0');
+                        const year2 = date_last_update.getFullYear();
+                        const formattedDate_last_update = `${day2}/${month2}/${year2}`;
+                    %>
+                    
+                    <div>Create at: <%= formattedDate_create_at %></div>
+                    <div>Last update: <%= formattedDate_last_update %></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "book-management",
+  "version": "1.0.0",
+  "description": "book management web application",
+  "homepage": "https://github.com/Chawengwit/book-management#readme",
+  "bugs": {
+    "url": "https://github.com/Chawengwit/book-management/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chawengwit/book-management.git"
+  },
+  "license": "ISC",
+  "author": "Chawengwit",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "sass": "^1.89.2"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "jquery": "^3.7.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.1"
+  }
+}

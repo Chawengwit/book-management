@@ -1,0 +1,30 @@
+.create-container {
+  padding: 20px;
+}
+.create-container .inner-create {
+  padding: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  font-size: 14px;
+  overflow: hidden;
+}
+.create-container .inner-create .inner-form .form-box {
+  margin: 15px 0;
+}
+.create-container .inner-create .inner-form .form-box .label-text {
+  margin-bottom: 5px;
+}
+.create-container .inner-create .inner-form .form-box input {
+  height: 30px;
+  width: 90%;
+  padding: 0 10px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+}
+.create-container .inner-create .create-btn-zone {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/*# sourceMappingURL=create.css.map */
