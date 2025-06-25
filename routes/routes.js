@@ -1,32 +1,18 @@
 const express = require("express");
 const path = require("path");
-const router = express.Router();
-const Books = require("../models/books.js");
-const Users = require("../models/users.js");
-const multer = require("multer");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const verifyToken = require("../service/common.js"); 
 
-// Create storage config
-const storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, path.join(__dirname, '../public/images/book-storage'));
-    },
-    filename: function (req, file, callback) {
-        callback(null, `${Date.now()}-${file.originalname}`);
-    }
-});
+const Books = require("../models/books.js");
+const Users = require("../models/users.js");
+const verifyToken = require("../service/verify_token.js");
+const upload = require("../service/upload_file.js");
 
-// start upload
-const upload = multer({ storage: storage });
-
-// secrete key
-const secret_key = "helloworld";
+const router = express.Router();
 
 //================== FRONT END ====================
 
-// home
+// home page
 router.get('/', verifyToken, async (req, res) => {
 
     if (!req.session.login || !req.session.token) {
@@ -74,7 +60,12 @@ router.get('/register', (req, res) => {
     res.render('register.ejs');
 });
 
-// Detail page
+// login page
+router.get("/login", (req, res) => {
+    res.render("login.ejs", {failedLogin: false});
+});
+
+// view book page
 router.get('/view/:id', verifyToken, async (req, res) => {
     try {
         const book = await Books.findById(req.params.id);
@@ -89,12 +80,12 @@ router.get('/view/:id', verifyToken, async (req, res) => {
     }
 });
 
-// create page form
+// create book page
 router.get('/create', verifyToken, async (req, res) => {
     res.render("createForm.ejs")
 });
 
-// update page form
+// update book page
 router.get('/update/:id', verifyToken, async (req, res) => {
     try {
         let book = await Books.findById(req.params.id);
@@ -112,52 +103,13 @@ router.get('/update/:id', verifyToken, async (req, res) => {
 
 //================== BACK END ====================
 
-// api log in
-router.get("/login", (req, res) => {
-    res.render("login.ejs", {failedLogin: false});
-});
-
-router.post("/user/login", async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        // 1. Find user by email
-        const user = await Users.findOne({ email });
-        if (!user) {
-            return res.render("login.ejs", { failedLogin: true });
-        }
-
-        // 2. Check password
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-            return res.render("login.ejs", { failedLogin: true });
-        }
-
-        // 3. Create and send JWT
-        const token = jwt.sign(
-            { email: user.email, id: user._id }, secret_key, { expiresIn: "24h" }
-        );
-
-        // 4. Save token
-        req.session.login = true;
-        req.session.token = token;
-        res.redirect("/");
-
-    } catch (err) {
-        console.error("Login error:", err);
-        res.render("login.ejs", { failedLogin: true });
-    }
-});
-
-// log out
-router.get('/user/logout', async (req, res) => {
-    req.session.destroy(() => {
-        res.redirect('/login');
-    });
-});
-
 // api register
-router.post('/user/register', async (req, res) => {
+router.post('/api/register', async (req, res) => {
+    const origin = req.get('Origin');
+    if (origin !== 'http://localhost:3000') {
+        return res.status(403).send('Not allowed');
+    }
+
     try {
         // Hash password
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -179,8 +131,53 @@ router.post('/user/register', async (req, res) => {
     }
 });
 
+// api log in
+router.post("/api/login", async (req, res) => {
+    const origin = req.get('Origin');
+    if (origin !== 'http://localhost:3000') {
+        return res.status(403).send('Not allowed');
+    }
+
+    const { email, password } = req.body;
+
+    try {
+        // 1. Find user by email
+        const user = await Users.findOne({ email });
+        if (!user) {
+            return res.render("login.ejs", { failedLogin: true });
+        }
+
+        // 2. Check password
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            return res.render("login.ejs", { failedLogin: true });
+        }
+
+        // 3. Create and send JWT
+        const token = jwt.sign(
+            { email: user.email, id: user._id }, process.env.JWT_SECRET, { expiresIn: "24h" }
+        );
+
+        // 4. Save token
+        req.session.login = true;
+        req.session.token = token;
+        res.redirect("/");
+
+    } catch (err) {
+        console.error("Login error:", err);
+        res.render("login.ejs", { failedLogin: true });
+    }
+});
+
+// log out
+router.get('/api/logout', async (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/login');
+    });
+});
+
 // api delete book
-router.get('/delete-book/:id', verifyToken, async (req, res) => {
+router.get('/api/delete-book/:id', verifyToken, async (req, res) => {
     try {
         await Books.findByIdAndDelete(req.params.id);
         res.redirect("/");
@@ -193,7 +190,7 @@ router.get('/delete-book/:id', verifyToken, async (req, res) => {
 });
 
 // api create book
-router.post('/get-detail', verifyToken, upload.single("image"), async (req, res) => {
+router.post('/api/create', verifyToken, upload.single("image"), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }
@@ -212,7 +209,7 @@ router.post('/get-detail', verifyToken, upload.single("image"), async (req, res)
 });
 
 // api update book
-router.post('/update-detail/:id', verifyToken, async (req, res) => {
+router.post('/api/update/:id', verifyToken, async (req, res) => {
     try {
         const book = await Books.findByIdAndUpdate(
             req.params.id,

@@ -1,13 +1,11 @@
 const jwt = require('jsonwebtoken');
 
-const secret_key = 'helloworld';
-
 function verifyToken(req, res, next) {
     const token = req.session.token;
     if (!token) return res.redirect('/login');
 
     try {
-        const decoded = jwt.verify(token, secret_key);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
         next();
 
