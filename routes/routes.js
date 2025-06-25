@@ -123,32 +123,33 @@ router.get("/update/:id", verifyToken, async (req, res) => {
 //================== BACK END ====================
 
 // api register
-router.post('/api/register', async (req, res) => {
-    const origin = req.get('Origin');
-    if (origin !== 'http://localhost:3000') {
-        return res.status(403).send('Not allowed');
+router.post("/api/register", async (req, res) => {
+    const origin = req.get("Origin");
+
+    if (origin !== "http://localhost:3000") {
+        console.warn(`[Register] Unauthorized origin: ${origin}`);
+        return res.status(403).send("Not allowed");
     }
 
     try {
-        // Hash password
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-        // Prepare user data
         const userData = {
-            ...req.body,
-            password: hashedPassword
+        ...req.body,
+        password: hashedPassword,
         };
 
-        // Save user
         const results = await Users.createUser(userData);
 
         res.redirect("/");
     } catch (err) {
-        console.error("Error creating user:", err);
-        res.redirect("/register");
-        res.status(500).send("Failed to create user.");
+        console.error("[Register] Failed to create user:", err);
+
+        // Handle failure gracefully
+        res.status(500).redirect("/register");
     }
 });
+
 
 // api log in
 router.post("/api/login", async (req, res) => {
