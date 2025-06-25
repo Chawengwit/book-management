@@ -23,8 +23,6 @@ router.get("/", verifyToken, async (req, res) => {
     const skip = (page - 1) * limit;
 
     try {
-        console.log(`[Books] Fetching page ${page} with limit ${limit}`);
-
         const totalBooks = await Books.countDocuments();
         const totalPages = Math.ceil(totalBooks / limit);
 
@@ -33,8 +31,6 @@ router.get("/", verifyToken, async (req, res) => {
         .skip(skip)
         .limit(limit)
         .exec();
-
-        console.log(`[Books] Retrieved ${books.length} books`);
 
         res.render("home.ejs", {
         books,
@@ -67,17 +63,28 @@ router.get("/login", (req, res) => {
 });
 
 // view book page
-router.get('/view/:id', verifyToken, async (req, res) => {
+router.get("/view/:id", verifyToken, async (req, res) => {
+    const bookId = req.params.id;
+
     try {
-        const book = await Books.findById(req.params.id);
+        const book = await Books.findById(bookId);
         if (!book) {
-            return res.status(404).send("Book not found.");
+            console.warn(`[Books] Book not found with ID: ${bookId}`);
+            return res.status(404).render("error.ejs", {
+                message: "Book not found",
+                errorCode: 404,
+            });
         }
 
         res.render("book.ejs", { book });
+
     } catch (err) {
-        console.error("Error fetching book:", err);
-        res.status(500).send("Error getting book.");
+        console.error(`[Books] Failed to fetch book with ID: ${bookId}`, err);
+
+        res.status(500).render("error.ejs", {
+            message: "Something went wrong while retrieving the book.",
+            errorCode: 500,
+        });
     }
 });
 
@@ -99,7 +106,6 @@ router.get('/update/:id', verifyToken, async (req, res) => {
         console.error("Error fetching book:", err);
         res.status(500).send("Error getting book.");
     }
-    
 });
 
 //================== BACK END ====================
