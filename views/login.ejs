@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/fa/css/all.min.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="post" action="/user/login">
+    <div class="login-container">
+        <div class="inner-login">
+            <div class="login-title">Login</div>
+            <form class="form-login" method="post" action="/user/login">
+                <div class="label-text">Email</div>
+                <input class="input" type="text" name="email">
 
-        <label>Email</label>
-        <input type="text" name="email">
+                <div class="label-text">Password</div>
+                <input type="password" name="password">
+                
+                <div class="login-btn-zone">
+                    <button class="btn btn-action" type="submit" >Log In</button>
+                    <a href="/register" class="btn" type="button">Sign Up</a>
+                </div>
+                
+            </form>
 
-        <br>
-
-        <label>Password</label>
-        <input type="password" name="password">
-        
-        <br>
-
-        <button type="submit">Log In</button>
-        
-    </form>
-
-    <% if (failedLogin) { %>
-        <p style="color:red;">Wrong email or password</p>
-    <% } %>
-
-    <a href="/register">Sign Up</a>
+            <% if (failedLogin) { %>
+                <div class="wrong-text">Please recheck your email or password.</div>
+            <% } %>
+        </div>
+    </div>
     
 </body>
 </html>
