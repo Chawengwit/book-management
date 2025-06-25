@@ -4,23 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/fa/css/all.min.css">
 </head>
 <body>
-    <%- include('navbar') %>
+    <div class="login-container">
+        <div class="inner-login">
+            <div class="login-title">Register</div>
+            <form class="form-login" method="post" action="/user/register">
+                <div class="label-text">Email</div>
+                <input class="input" type="text" name="email">
 
-    <h1>Register</h1>
-    <form method="POST" action="/user/register">
-        <label>Email</label>
-        <input type="text" name="email">
+                <div class="label-text">Password</div>
+                <input type="password" name="password">
+                
+                <div class="login-btn-zone">
+                    <button class="btn btn-action" type="submit" >Register</button>
+                    <a href="/login" class="btn btn-back" type="button">Back</a>
+                </div>
+                
+            </form>
+        </div>
+    </div>
 
-        <br>
 
-        <label>Password</label>
-        <input type="password" name="password">
-
-        <button type="submit">Save</button>
-    </form>
-
-    <a href="/">Back</a>
 </body>
 </html>
