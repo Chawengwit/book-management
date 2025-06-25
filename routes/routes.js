@@ -94,19 +94,31 @@ router.get('/create', verifyToken, async (req, res) => {
 });
 
 // update book page
-router.get('/update/:id', verifyToken, async (req, res) => {
+router.get("/update/:id", verifyToken, async (req, res) => {
+    const bookId = req.params.id;
+
     try {
-        let book = await Books.findById(req.params.id);
+        const book = await Books.findById(bookId);
+
         if (!book) {
-            return res.status(404).send("Book not found.");
+        console.warn(`[Books] Book not found with ID: ${bookId}`);
+        return res.status(404).render("error.ejs", {
+            message: "Book not found.",
+            errorCode: 404,
+        });
         }
 
-        res.render("editForm.ejs", { book});
+        res.render("editForm.ejs", { book });
     } catch (err) {
-        console.error("Error fetching book:", err);
-        res.status(500).send("Error getting book.");
+        console.error(`[Books] Error fetching book for edit (ID: ${bookId}):`, err);
+
+        res.status(500).render("error.ejs", {
+        message: "An error occurred while loading the book.",
+        errorCode: 500,
+        });
     }
 });
+
 
 //================== BACK END ====================
 
