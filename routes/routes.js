@@ -12,47 +12,49 @@ const router = express.Router();
 //================== FRONT END ====================
 
 // home page
-router.get('/', verifyToken, async (req, res) => {
-
-    if (!req.session.login || !req.session.token) {
-        return res.redirect('/login');
+router.get("/", verifyToken, async (req, res) => {
+    if (!req.session?.login || !req.session?.token) {
+        console.warn("Session invalid: user not logged in or missing token.");
+        return res.redirect("/login");
     }
 
-    // Parse page and limit from query, default to page 1, 4 items per page
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 12;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 12;
+    const skip = (page - 1) * limit;
 
     try {
-        const skip = (page - 1) * limit;
+        console.log(`[Books] Fetching page ${page} with limit ${limit}`);
 
-        // Get total count for pagination
         const totalBooks = await Books.countDocuments();
         const totalPages = Math.ceil(totalBooks / limit);
 
         const books = await Books.find()
-            .skip(skip)
-            .limit(limit)
-            .exec();
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .exec();
+
+        console.log(`[Books] Retrieved ${books.length} books`);
 
         res.render("home.ejs", {
-            books,
-            currentPage: page,
-            totalPages,
-            error: null // no error
+        books,
+        currentPage: page,
+        totalPages,
+        error: null,
         });
 
     } catch (err) {
-        console.error("Error fetching books:", err);
+        console.error("[Books] Error fetching books:", err);
 
-        res.render("home.ejs", {
-            books: [],
-            currentPage: page,
-            totalPages: 1,
-            error: "There was a problem loading books. Please try again."
+        res.status(500).render("home.ejs", {
+        books: [],
+        currentPage: page,
+        totalPages: 1,
+        error: "There was a problem loading books. Please try again later.",
         });
     }
-
 });
+
 
 // register page
 router.get('/register', (req, res) => {
