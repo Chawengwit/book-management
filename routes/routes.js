@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 
@@ -21,7 +20,7 @@ router.get('/', verifyToken, async (req, res) => {
 
     // Parse page and limit from query, default to page 1, 4 items per page
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 4;
+    const limit = parseInt(req.query.limit) || 12;
 
     try {
         const skip = (page - 1) * limit;
