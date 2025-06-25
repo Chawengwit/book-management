@@ -15,11 +15,15 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha"
   },
   "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.7.1",
     "nodemon": "^3.1.10",
-    "sass": "^1.89.2"
+    "sass": "^1.89.2",
+    "sinon": "^21.0.0",
+    "supertest": "^7.1.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
