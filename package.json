@@ -13,7 +13,7 @@
   "license": "ISC",
   "author": "Chawengwit",
   "type": "commonjs",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
