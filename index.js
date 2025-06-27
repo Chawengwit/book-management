@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(session({
-    secret: "secrete",
+    secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false,
     rolling: true,
@@ -29,7 +29,7 @@ app.use(session({
 }));
 
 // app.use(cors({
-//     origin: "http://localhost:3000",
+//     origin: `http://localhost:${process.env.PORT}`,
 //     methods: ["GET", "POST"],
 //     credentials: true
 // }));
@@ -41,6 +41,7 @@ app.use('/fa', express.static(path.join(__dirname, 'node_modules/@fortawesome/fo
 app.use(router);
 
 // Start server
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

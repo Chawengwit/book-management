@@ -124,9 +124,8 @@ router.get("/update/:id", verifyToken, async (req, res) => {
 
 // api register
 router.post("/api/register", async (req, res) => {
-    const origin = req.get("Origin");
-
-    // if (origin !== "http://localhost:3000") {
+    // const origin = req.get("Origin");
+    // if (origin !== `http://localhost:${process.env.PORT}`) {
     //     console.warn(`[Register] Unauthorized origin: ${origin}`);
     //     return res.status(403).send("Not allowed");
     // }
@@ -153,9 +152,8 @@ router.post("/api/register", async (req, res) => {
 
 // api log in
 router.post("/api/login", async (req, res) => {
-    const origin = req.get("Origin");
-
-    // if (origin !== "http://localhost:3000") {
+    // const origin = req.get("Origin");
+    // if (origin !== `http://localhost:${process.env.PORT}`) {
     //     console.warn(`[Login] Unauthorized origin attempt: ${origin}`);
     //     return res.status(403).send("Not allowed");
     // }
