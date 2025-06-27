@@ -28,11 +28,11 @@ app.use(session({
     }
 }));
 
-app.use(cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST"],
+//     credentials: true
+// }));
 
 app.use(express.static('public'));
 app.use('/fa', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
