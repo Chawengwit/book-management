@@ -126,10 +126,10 @@ router.get("/update/:id", verifyToken, async (req, res) => {
 router.post("/api/register", async (req, res) => {
     const origin = req.get("Origin");
 
-    if (origin !== "http://localhost:3000") {
-        console.warn(`[Register] Unauthorized origin: ${origin}`);
-        return res.status(403).send("Not allowed");
-    }
+    // if (origin !== "http://localhost:3000") {
+    //     console.warn(`[Register] Unauthorized origin: ${origin}`);
+    //     return res.status(403).send("Not allowed");
+    // }
 
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -155,10 +155,10 @@ router.post("/api/register", async (req, res) => {
 router.post("/api/login", async (req, res) => {
     const origin = req.get("Origin");
 
-    if (origin !== "http://localhost:3000") {
-        console.warn(`[Login] Unauthorized origin attempt: ${origin}`);
-        return res.status(403).send("Not allowed");
-    }
+    // if (origin !== "http://localhost:3000") {
+    //     console.warn(`[Login] Unauthorized origin attempt: ${origin}`);
+    //     return res.status(403).send("Not allowed");
+    // }
 
     const { email, password } = req.body;
 
