@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
 
 // Connect MongoDB
-const dbUrl = "mongodb://localhost:27017/booksDB";
-mongoose.connect(dbUrl)
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.error("MongoDB connection error:", err));
+const dbUrl = process.env.MONGODB_URI;
+
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('✅ MongoDB connected'))
+.catch((err) => console.error('❌ MongoDB connection error:', err));
 
 const userSchema = new mongoose.Schema({
     email: {
