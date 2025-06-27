@@ -4,12 +4,13 @@ const mongoose = require('mongoose');
 // Connect MongoDB
 const dbUrl = process.env.MONGODB_URI;
 
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB connected'))
-.catch((err) => console.error('❌ MongoDB connection error:', err));
+if (!dbUrl) {
+    throw new Error('❌ MONGODB_URI is not defined');
+}
+
+mongoose.connect(dbUrl)
+    .then(() => console.log('✅ MongoDB connected'))
+    .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // Design the schema for books
 const bookSchema = new mongoose.Schema({
