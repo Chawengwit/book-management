@@ -19,16 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use(session({
-//     secret: process.env.JWT_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     rolling: true,
-//     cookie: {
-//         maxAge: 24 * 60 * 60 * 1000 // 24 hours
-//     }
-// }));
-
 app.use(session({
     secret: process.env.JWT_SECRET,
     resave: false,
@@ -37,10 +27,10 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: process.env.MONGODB_URI,
         collectionName: 'sessions',
-        ttl: 8640000
+        ttl: 60 * 60 * 24 // 1 day
     }),
     cookie: {
-        maxAge: 8640000
+        maxAge: 1000 * 60 * 60 * 24 // 1 day
     }
 }));
 
